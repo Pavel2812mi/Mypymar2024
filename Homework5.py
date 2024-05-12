@@ -31,7 +31,7 @@ print(output_word)
 
 # В строке “Ivanou Ivan” поменяйте местами слова => "Ivan Ivanou"
 name = "Ivanou Ivan"
-new_name = name[7:11] + " " + name[0:6]
+new_name = " ".join(name.split()[::-1])
 print(new_name)
 
 # Имена собственные всегда начинаются с заглавной буквы,
