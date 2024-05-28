@@ -14,23 +14,30 @@ while True:
         break
 print("Загадано")
 
-# Начинаем цикл угадывания (загадонное число при этом не меняется)
+# Начинаем цикл угадывания (загаданное число при этом не меняется)
 while True:
-    number = int(input("Введите ваше число: "))
+    number = input("Введите ваше число: ")
     print("Вы ввели:", number)
+
+    # Проверяем наличие повторяющихся цифр
+    if len(set(number)) != len(number):
+        print("Число должно содержать только уникальные цифры.")
+        continue
 
     cows = 0
     bulls = 0
 
     # Проверяем на 'коров' (совпадение цифр)
     for i in range(len(str(number))):
-        if str(number)[i] in str(random_number):
-            cows += 1
+        for j in range(len(str(random_number))):
+            if i != j and str(number)[i] == str(random_number)[j]:
+                cows += 1
 
     # Проверяем на 'быков' (совпадение цифр и их позиций)
     for i in range(len(str(number))):
-        if str(number)[i] == str(random_number)[i]:
-            bulls += 1
+        for j in range(len(str(random_number))):
+            if i == j and str(number)[i] == str(random_number)[j]:
+                bulls += 1
 
     print("Коровы:", cows)
     print("Быки:", bulls)
