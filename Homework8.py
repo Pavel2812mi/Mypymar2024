@@ -1,5 +1,4 @@
 """homework_8"""
-# pylint: disable=invalid-name
 # Последовательность
 
 
@@ -19,11 +18,11 @@ def check_increasing_sequence(a):
     return True
 
 
-print(check_increasing_sequence([40, 50, 60, 10, 20, 30]))
-print(check_increasing_sequence([1, 3, 2]))
-print(check_increasing_sequence([1, 3, 2, 1]))
-print(check_increasing_sequence([1, 2, 3, 4, 5, 3, 5, 6]))
-print(check_increasing_sequence([1, 2, 3, 1, 4, 1]))
+assert check_increasing_sequence([40, 50, 60, 10, 20, 30]) is False
+assert check_increasing_sequence([1, 3, 2]) is True
+assert check_increasing_sequence([1, 3, 2, 1]) is False
+assert check_increasing_sequence([1, 2, 3, 4, 5, 3, 5, 6]) is False
+assert check_increasing_sequence([1, 2, 3, 1, 4, 1]) is False
 
 # Число напротив
 
