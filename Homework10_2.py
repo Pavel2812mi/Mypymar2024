@@ -14,14 +14,14 @@ def check_result(func):
         в случае, если результат функции не является числом
         Возвращает функцию, если результат является числом
     """
-    def wrapper(arg1, arg2):
+    def wrapper(*args):
         try:
-            if not isinstance(func(arg1, arg2), int):
+            if not isinstance(func(*args), int):
                 raise ValueError("Результат не является числом")
         except ValueError as e:
             print(f"Ошибка: {e}")
             return None
-        return func(arg1, arg2)
+        return func(*args)
     return wrapper
 
 
