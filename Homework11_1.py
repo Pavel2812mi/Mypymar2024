@@ -1,10 +1,13 @@
 """Библиотека"""
 
 
+from typing import List
+
+
 class Book:
     """A class to represent all available books in the library"""
-    reserved_books: list["Book"] = []
-    taken_books: list["Book"] = []
+    reserved_books: List[str] = []
+    taken_books: List[str] = []
 
     def __init__(self, name, author, number_of_pages, ISBN, reserved):
         self.name = name
@@ -27,13 +30,13 @@ book2 = Book("Time_machine", "Wells", 314, True, "False")
 book3 = Book("Island of doctor Morrow", "Wells", 325, True, "False")
 
 
-class reader:
+class Reader:
     """A class to represent all library readers"""
 
-    def __init__(self, name, resereved_books, taken_books):
+    def __init__(self, name):
         self.name = name
-        self.resereved_books = resereved_books
-        self.taken_books = taken_books
+        self.resereved_books = []
+        self.taken_books = []
 
     def reserve_book(self, book):
         """Method for book reservation"""
@@ -76,8 +79,8 @@ class reader:
             print(f"Sorry, but you do not have access to return {book.name}")
 
 
-reader1 = reader("Ivan Ivanov", [], [])
-reader2 = reader("Sergei Petrov", [], [])
+reader1 = Reader("Ivan Ivanov")
+reader2 = Reader("Sergei Petrov")
 
 reader1.reserve_book(book1)
 reader2.take_book(book1)

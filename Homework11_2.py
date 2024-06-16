@@ -36,15 +36,17 @@ class Bank:
         """Возвращает депозит для клиента."""
         deposit = self.deposits.get(deposit_name)
         if deposit:
-            end_deposit_amount = int(deposit.initial_deposit_amount
-                                     * (1 + deposit.percentage_per_annum / 100)
-                                     ** deposit.deposit_term)
-            print(f"Итоговая сумма депозита "
-                  f"{deposit_name}: {end_deposit_amount}")
-        else:
-            print(f"Депозит с именем {deposit_name} не найден.")
+            monthly_interest = deposit.percentage_per_annum / 12 / 100
+            months = deposit.deposit_term * 12
+            end_deposit_amount = (deposit.initial_deposit_amount
+                                  * (1 + monthly_interest) ** months)
+            return (f"Итоговая сумма депозита"
+                    f" {deposit_name}: {end_deposit_amount:.2f}")
+        return f"Депозит с именем {deposit_name} не найден."
 
 
 client1 = Bank("Pavel_Danilov", True)
-client1.create_deposit("Deposit_1", 1000, 2, 10)
-client1.withdraw_deposit("Deposit_1")
+client1.create_deposit("Deposit_1", 1000, 1, 10)
+assert (client1.withdraw_deposit("Deposit_1")
+        == "Итоговая сумма депозита Deposit_1: 1104.71"), \
+    "Incorrect final deposit amount calculation"
