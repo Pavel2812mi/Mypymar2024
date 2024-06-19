@@ -38,36 +38,27 @@ class Bank:
     def exchange_currency(self, source_currency, amount, target_currency=None):
         """Method for exchanging currencies"""
 
-        source_currency = self.currencies.get(source_currency)
-        target_currency = self.currencies.get(target_currency)
+        source_currency_obj = self.currencies.get(source_currency)
+        target_currency_obj = self.currencies.get(target_currency)
 
-        try:
-            if source_currency == target_currency:
-                raise (ValueError
-                       ("Source currency can't be equal Target currency"))
-        except ValueError as e:
-            print(f"Ошибка: {e}")
+        if source_currency_obj is None:
+            print("Error: Invalid source currency")
             return None
 
-        try:
-            if not source_currency:
-                raise ValueError("Invalid currency provided")
-        except ValueError as e:
-            print(f"Ошибка: {e}")
+        if source_currency_obj == target_currency_obj:
+            print("Error: Source currency cannot be equal to target currency")
             return None
 
-        if target_currency is None:
-            target_currency = self.currencies["BYN"]
+        if target_currency_obj is None:
+            target_currency_obj = self.currencies["BYN"]
 
-        if target_currency.currency_name == "EUR":
-            result_amount = amount * source_currency.EUR_exchange_rate
-        elif target_currency.currency_name == "USD":
-            result_amount = amount * source_currency.USD_exchange_rate
-        elif target_currency.currency_name == "BYN":
-            result_amount = amount*source_currency.BYN_exchange_rate
-        return (f"Currency exchange succesful."
-                f" You received {result_amount:.2f}"
-                f" {target_currency.currency_name}")
+        exchange_rate = getattr(source_currency_obj,
+                                f"{target_currency_obj.currency_name}"
+                                f"_exchange_rate")
+        result_amount = amount * exchange_rate
+        return (f"Currency exchange succesful. "
+                f"You received {result_amount:.2f} "
+                f"{target_currency_obj.currency_name}")
 
     def create_deposit(self, deposit_name, initial_deposit_amount,
                        deposit_term, percentage_per_annum):
@@ -100,8 +91,7 @@ client1.create_deposit("Deposit_1", 1000, 1, 10)
 assert (client1.withdraw_deposit("Deposit_1")
         == "Итоговая сумма депозита Deposit_1: 1104.71"), \
     "Incorrect final deposit amount calculation"
-
-assert (client1.exchange_currency("USD", 10, "EUR")
+assert ((client1.exchange_currency("USD", 10, "EUR"))
         == "Currency exchange succesful. You received 9.29 EUR"), \
     "Incorrect Currency exchange calculation"
 assert (client1.exchange_currency("EUR", 10, "USD")
@@ -109,7 +99,7 @@ assert (client1.exchange_currency("EUR", 10, "USD")
     "Incorrect Currency exchange calculation"
 assert (client1.exchange_currency("USD", 10, "BYN")
         == "Currency exchange succesful. You received 32.69 BYN"), \
-    "Incorrect Currency exchange calculation"
+     "Incorrect Currency exchange calculation"
 assert (client1.exchange_currency("USD", 10)
         == "Currency exchange succesful. You received 32.69 BYN"), \
     "Incorrect Currency exchange calculation"
