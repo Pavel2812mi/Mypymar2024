@@ -14,6 +14,9 @@ def parse_molecule(formula):
         A dictionary where the keys are symbols of atoms (strings),
         and the values are their number (integers) in the molecule.
     """
+    formula = formula.replace("{", "(").replace("[", "(")
+    formula = formula.replace("}", ")").replace("]", ")")
+
     stack = []
     current = {}
     i = 0
@@ -31,11 +34,11 @@ def parse_molecule(formula):
                 i += 1
             count = int(count) if count else 1
             current[atom] = current.get(atom, 0) + count
-        elif formula[i] == "(" or formula[i] == "[" or formula[i] == "{":
+        elif formula[i] == "(":
             stack.append(current)
             current = {}
             i += 1
-        elif formula[i] == ")" or formula[i] == "]" or formula[i] == "}":
+        elif formula[i] == ")":
             multiplier = ""
             i += 1
             while i < len(formula) and formula[i].isdigit():

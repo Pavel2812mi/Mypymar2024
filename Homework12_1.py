@@ -11,13 +11,14 @@ class Card:
                    "J", "Q", "K", "A"]
     mast_list = ["Hearts", "Diamonds", "Clubs", "Spades"]
 
-    def __init__(self, number=None, mast=None):
+    def __init__(self, number=None, mast=None, color=None):
         self.number = number
         self.mast = mast
+        self.color = color
 
     def __str__(self):
         if self.number is None and self.mast is None:
-            return "Joker"
+            return f"{self.color} Joker"
         return f"{self.mast} {self.number}"
 
 
@@ -29,7 +30,8 @@ class CardsDeck:
             for mast in Card.mast_list:
                 self.deck.append(Card(number, mast))
         if with_jokers:
-            self.deck.append(Card())
+            self.deck.append(Card(color="Red"))
+            self.deck.append(Card(color="Black"))
 
     def shuffle(self):
         """Method for shuffling cards"""
