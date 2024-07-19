@@ -3,6 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# pytest
+.pytest_cache/
+.cache/
+*.pyc
+*.log
+
+# pytest-html
+assets/
+
 # Environments
 venv/
 

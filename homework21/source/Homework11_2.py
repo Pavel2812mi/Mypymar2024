@@ -1,6 +1,9 @@
 """Банковский вклад"""
 
 
+from loguru import logger
+
+
 class Deposit:
     """A class to represent all created deposits"""
     def __init__(self, name, initial_deposit_amount,
@@ -26,11 +29,11 @@ class Bank:
             deposit1 = Deposit(deposit_name, initial_deposit_amount,
                                deposit_term, percentage_per_annum)
             self.deposits[deposit_name] = deposit1
-            print(f"You have successfully created "
-                  f"a deposit {deposit_name}")
+            logger.info(f"You have successfully "
+                        f"created a deposit {deposit_name}")
         else:
-            print("Sorry, you need to be a client of the bank "
-                  "to create a deposit")
+            logger.error("Sorry, you need to be a client"
+                         " of the bank to create a deposit")
 
     def withdraw_deposit(self, deposit_name):
         """Возвращает депозит для клиента."""

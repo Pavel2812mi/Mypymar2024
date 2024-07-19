@@ -2,6 +2,7 @@
 
 
 from typing import List
+from loguru import logger
 
 
 class Book:
@@ -41,14 +42,15 @@ class Reader:
     def reserve_book(self, book):
         """Method for book reservation"""
         if book.is_reserved():
-            print(f"Sorry, {book.name} is already reserved")
+            logger.warning(f"{self.name}: Sorry, {book.name}"
+                           f" is already reserved")
         elif book.is_taken():
-            print(f"Sorry, {book.name} is already taken")
+            logger.warning(f"{self.name}: Sorry, {book.name} is already taken")
         else:
             book.reserved = True
             book.reserved_books.append(book)
             self.resereved_books.append(book)
-            print(f"You successfully reserved {book.name}")
+            logger.info(f"{self.name}: Successfully reserved {book.name}")
 
     def take_book(self, book):
         """Method for book taking"""
@@ -58,25 +60,27 @@ class Reader:
             self.taken_books.append(book)
             book.reserved_books.remove(book)
             self.resereved_books.remove(book)
-            print(f"You successfully taken {book.name}")
+            logger.info(f"{self.name}: Successfully taken {book.name}")
         elif book.is_reserved():
-            print(f"Sorry, {book.name} is already reserved")
+            logger.warning(f"{self.name}: Sorry, {book.name}"
+                           f" is already reserved")
         elif book.is_taken():
-            print(f"Sorry, {book.name} is already taken")
+            logger.warning(f"{self.name}: Sorry, {book.name} is already taken")
         else:
             book.reserved = False
             book.taken_books.append(book)
             self.taken_books.append(book)
-            print(f"You successfully taken {book.name}")
+            logger.info(f"{self.name}: Successfully taken {book.name}")
 
     def return_book(self, book):
         """Method for book returning"""
         if book in self.taken_books:
             self.taken_books.remove(book)
             book.taken_books.remove(book)
-            print(f"You successfully returned {book.name}")
+            logger.info(f"{self.name}: Successfully returned {book.name}")
         else:
-            print(f"Sorry, but you do not have access to return {book.name}")
+            logger.warning(f"{self.name}: Sorry, "
+                           f"but you do not have {book.name}")
 
 
 reader1 = Reader("Ivan Ivanov")
