@@ -10,7 +10,8 @@ def setup_logging(test_name, log_level="DEBUG"):
     Logger setup.
     """
     logger.remove()
-    log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs")
+    log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+                           "library_test_logs")
     os.makedirs(log_dir, exist_ok=True)
     log_file = os.path.join(log_dir, f"{test_name}.log")
     logger.add(log_file, level=log_level, enqueue=True)
