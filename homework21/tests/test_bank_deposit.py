@@ -1,5 +1,6 @@
 """Тестирование банковского вклада (pytest)"""
 
+import os
 from loguru import logger
 from ..source.Homework11_2 import Bank
 
@@ -9,7 +10,10 @@ def setup_logging(test_name, log_level="INFO"):
     Logger setup.
     """
     logger.remove()
-    logger.add(f"{test_name}.log", level=log_level, enqueue=True)
+    log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs")
+    os.makedirs(log_dir, exist_ok=True)
+    log_file = os.path.join(log_dir, f"{test_name}.log")
+    logger.add(log_file, level=log_level, enqueue=True)
 
 
 class TestBank:
