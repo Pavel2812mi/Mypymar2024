@@ -33,7 +33,7 @@ class Bank:
                         f"created a deposit {deposit_name}")
         else:
             logger.warning("Sorry, you need to be a client"
-                         " of the bank to create a deposit")
+                           " of the bank to create a deposit")
 
     def withdraw_deposit(self, deposit_name):
         """Возвращает депозит для клиента."""
