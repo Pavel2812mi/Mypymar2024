@@ -7,14 +7,14 @@ from Homework11_1 import Book, Reader
 @keyword
 def create_book(name, author, number_of_pages, ISBN, reserved):
     """Create a new book"""
-    return Book(name=name, author=author, number_of_pages=number_of_pages,
-                ISBN=ISBN, reserved=reserved)
+    return Book(name, author, number_of_pages,
+                ISBN, reserved)
 
 
 @keyword
 def create_reader(name):
     """Create a new reader"""
-    return Reader(name=name)
+    return Reader(name)
 
 
 @keyword

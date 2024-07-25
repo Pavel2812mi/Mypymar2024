@@ -7,7 +7,7 @@ from Homework11_2 import Bank
 @keyword
 def Create_Bank(name, is_registred):
     """Bank object Creation."""
-    return Bank(name=name, is_registred=is_registred)
+    return Bank(name, is_registred)
 
 
 @keyword
