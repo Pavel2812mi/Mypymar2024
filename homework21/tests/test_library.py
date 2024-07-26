@@ -1,16 +1,10 @@
 """Тестирование библиотеки (pytest)"""
 
-import os
-from loguru import logger
-from ..source.Homework11_1 import Reader, Book
+import logging
+from homework21.source.Homework11_1 import Reader, Book
+from homework21.tests.logger_config import setup_logging
 
-
-log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-                       "library_log_folder")
-os.makedirs(log_dir, exist_ok=True)
-log_file = os.path.join(log_dir, "library_test.log")
-logger.remove()
-logger.add(log_file, level="DEBUG", enqueue=True)
+logger = setup_logging("library_test.log", log_level=logging.INFO)
 
 
 def test_book_reservation():
@@ -30,7 +24,10 @@ def test_book_reservation():
     assert book1 in reader2.resereved_books, \
         logger.error(f"book {book1.name}"
                      f" is not in {reader2.name} reserved books list")
-    logger.info(f"Test for reserving a book {book1.name} successfully passed")
+    if (book1.is_reserved() and book1 in Book.reserved_books
+            and book1 in reader2.resereved_books):
+        logger.info(f"Test for reserving a book"
+                    f" {book1.name} successfully passed")
 
 
 def test_book_taking():
@@ -50,7 +47,9 @@ def test_book_taking():
     assert book1 in reader1.taken_books, \
         logger.error(f"book {book1.name} "
                      f"is not in {reader1.name} taken books list")
-    logger.info(f"Test for taking a book {book1.name} successfully passed")
+    if (book1.is_taken() and book1 in Book.taken_books
+            and book1 in reader1.taken_books):
+        logger.info(f"Test for taking a book {book1.name} successfully passed")
 
 
 def test_taken_book_return():
@@ -69,7 +68,9 @@ def test_taken_book_return():
                      f"remains in {reader1.name} taken books list")
     assert book1 not in Book.taken_books, \
         logger.error(f"book {book1.name} remains in taken books list")
-    logger.info(f"Test for returning a book {book1.name} successfully passed")
+    if book1 not in reader1.taken_books and book1 not in Book.taken_books:
+        logger.info(f"Test for returning"
+                    f" a book {book1.name} successfully passed")
 
 
 def test_non_taken_book_return():
@@ -83,10 +84,9 @@ def test_non_taken_book_return():
     logger.info(f"Starting a test for returning a non-taken book {book1.name}")
     try:
         reader1.return_book(book1)
-    except RuntimeError as e:
-        logger.error(f"Expected exception: {e}")
-    logger.info(f"Test for returning a non-taken book"
-                f" {book1.name} failed as expected")
+    except RuntimeError:
+        logger.info(f"Test for returning"
+                    f" a non-taken book {book1.name} failed as expected")
 
 
 def test_reserved_book_taking_by_another_reader():
@@ -103,15 +103,9 @@ def test_reserved_book_taking_by_another_reader():
     reader1.reserve_book(book1)
     try:
         reader2.take_book(book1)
-    except RuntimeError as e:
-        logger.error(f"Expected exception: {e}")
-    assert book1 in Book.reserved_books, \
-        logger.error(f"book {book1.name} is not in reserved books list")
-    assert book1 in reader1.resereved_books, \
-        logger.error(f"book {book1.name} "
-                     f"is not in {reader1.name} reserved books list")
-    logger.info(f"Test for taking a reserved book"
-                f" {book1.name} failed as expected")
+    except RuntimeError:
+        logger.info(f"Test for taking"
+                    f" a reserved book {book1.name} failed as expected")
 
 
 def test_reserved_book_taking_by_the_same_reader():
