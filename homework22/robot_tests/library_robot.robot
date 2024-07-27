@@ -1,5 +1,5 @@
 *** Settings ***
-Library    library_keywords.py
+Library    ../resources/library_keywords.py
 Library    BuiltIn
 Library    OperatingSystem
 Library    DateTime
@@ -7,7 +7,7 @@ Suite Setup    Setup Logging
 
 
 *** Variables ***
-${LOG_FILE}    ${CURDIR}${/}robot_library_log_folder${/}library_robot.log
+${LOG_FILE}    ${CURDIR}${/}..${/}robot_library_log_folder${/}library_robot.log
 ${NAME}      War of the worlds
 ${AUTHOR}         Wells
 ${NUMBER_OF_PAGES}      290
@@ -17,7 +17,7 @@ ${RESERVED}           False
 
 *** Keywords ***
 Setup Logging
-    Create Directory    ${CURDIR}${/}robot_library_log_folder
+    Create Directory    ${CURDIR}${/}..${/}robot_library_log_folder
     Create File    ${LOG_FILE}
     Set Log Level    INFO
 

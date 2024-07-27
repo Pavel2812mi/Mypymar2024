@@ -1,16 +1,16 @@
 *** Settings ***
-Library    bank_deposit_keywords.py
+Library    ../resources/bank_deposit_keywords.py
 Library    BuiltIn
 Library    OperatingSystem
 Library    DateTime
 Suite Setup    Setup Logging
 
 *** Variables ***
-${LOG_FILE}    ${CURDIR}${/}bank_deposit_robot_log_folder${/}bank_deposit_robot.log
+${LOG_FILE}    ${CURDIR}${/}..${/}bank_deposit_robot_log_folder${/}bank_deposit_robot.log
 
 *** Keywords ***
 Setup Logging
-    Create Directory    ${CURDIR}${/}bank_deposit_robot_log_folder
+    Create Directory    ${CURDIR}${/}..${/}bank_deposit_robot_log_folder
     Create File    ${LOG_FILE}
     Set Log Level    INFO
 

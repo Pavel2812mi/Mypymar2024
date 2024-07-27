@@ -1,7 +1,7 @@
 """Bank Deposit keywords"""
 
 from robot.api.deco import keyword
-from Homework11_2 import Bank
+from ...Homework11_2 import Bank
 
 
 @keyword
