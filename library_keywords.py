@@ -1,12 +1,12 @@
 """Library keywords"""
 
 from robot.api.deco import keyword
-from ...Homework11_1 import Book, Reader
+from Homework11_1 import Book, Reader
 
 
 @keyword
 def create_book(name, author, number_of_pages, ISBN, reserved):
-    """Create a *new book"""
+    """Create a new book"""
     return Book(name, author, number_of_pages,
                 ISBN, reserved)
 
