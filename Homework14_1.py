@@ -3,7 +3,7 @@
 
 import os
 
-file_path = "students.txt"
+file_path = "../../students.txt"
 
 
 def read_student_data(file_path_local):
