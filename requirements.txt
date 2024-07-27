@@ -2,7 +2,6 @@ flake8
 pycodestyle
 mypy
 ruff
-pylint
 pytest==8.2.2
 loguru==0.7.2
 robotframework==7.0.1
