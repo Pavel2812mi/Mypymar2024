@@ -29,11 +29,8 @@ class Bank:
             deposit1 = Deposit(deposit_name, initial_deposit_amount,
                                deposit_term, percentage_per_annum)
             self.deposits[deposit_name] = deposit1
-            logger.info(f"You have successfully "
-                        f"created a deposit {deposit_name}")
-        else:
-            logger.warning("Sorry, you need to be a client"
-                           " of the bank to create a deposit")
+            return f"You have successfully created a deposit {deposit_name}"
+        return "Sorry, you need to be a client of the bank to create a deposit"
 
     def withdraw_deposit(self, deposit_name):
         """Возвращает депозит для клиента."""
