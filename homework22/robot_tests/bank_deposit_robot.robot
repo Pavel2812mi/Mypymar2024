@@ -1,5 +1,5 @@
 *** Settings ***
-Library    bank_deposit_keywords.py
+Library   ../resources/bank_deposit_keywords.py
 Library    BuiltIn
 Library    OperatingSystem
 Library    DateTime

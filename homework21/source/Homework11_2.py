@@ -1,9 +1,6 @@
 """Банковский вклад"""
 
 
-from loguru import logger
-
-
 class Deposit:
     """A class to represent all created deposits"""
     def __init__(self, name, initial_deposit_amount,

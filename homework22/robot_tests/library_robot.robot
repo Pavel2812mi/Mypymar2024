@@ -1,5 +1,5 @@
 *** Settings ***
-Library    library_keywords.py
+Library    ../resources/library_keywords.py
 Library    BuiltIn
 Library    OperatingSystem
 Library    DateTime

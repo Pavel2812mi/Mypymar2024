@@ -1,7 +1,7 @@
 """Тестирование модуля Банковский вклад"""
 
 import unittest
-from Homework11_2 import Bank
+from homework21.source.Homework11_2 import Bank
 
 
 class TestBankDeposit(unittest.TestCase):
