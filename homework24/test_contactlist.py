@@ -1,12 +1,10 @@
 """add, edit and delete contact selenium tests"""
 
 
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.alert import Alert
 import pytest
 
 URL = 'https://thinking-tester-contact-list.herokuapp.com/'
@@ -67,11 +65,11 @@ def test_add_contact(browser_webdriver, login, wait):
     submit_button.click()
 
     wait.until(EC.text_to_be_present_in_element(
-        (By.CLASS_NAME, "main-content"), "Vasya Pupkin"))
+        (By.CLASS_NAME, "contactTable"), "Vasya Pupkin"))
     wait.until(EC.text_to_be_present_in_element(
-        (By.CLASS_NAME, "main-content"), "1989-10-10"))
+        (By.CLASS_NAME, "contactTable"), "1989-10-10"))
 
-    table = browser_webdriver.find_element(By.CLASS_NAME, "main-content")
+    table = browser_webdriver.find_element(By.CLASS_NAME, "contactTable")
 
     assert "Vasya Pupkin" in table.text, \
         "Контакт 'Vasya Pupkin' не найден в таблице после его добавления"
@@ -135,12 +133,15 @@ def test_delete_contact(browser_webdriver, login, wait):
                                ((By.XPATH, '//button[@id="delete"]')))
     delete_button.click()
 
-    alert = Alert(browser_webdriver)
+    alert = WebDriverWait(browser_webdriver, 5).until(EC.alert_is_present())
     alert.accept()
-    time.sleep(5)
 
-    main_content = (browser_webdriver.find_element
-                    (By.CLASS_NAME, "main-content"))
+    wait.until(EC.text_to_be_present_in_element(
+        (By.CLASS_NAME, "contactTableHead"),
+        "Name"))
 
-    assert "Mikhail Danilov" not in main_content.text, \
+    contact_table = wait.until(EC.presence_of_element_located
+                               ((By.CLASS_NAME, "contactTable")))
+
+    assert "Mikhail Danilov" not in contact_table.text, \
         "Ошибка: 'Mikhail Danilov' не был удален из таблицы"
