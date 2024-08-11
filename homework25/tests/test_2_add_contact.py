@@ -23,7 +23,7 @@ def test_01_add_contacts(driver, login):
 
     contact_list = contact_list_page.get_table_text()
 
-    assert (added_firstname
-            and added_lastname in contact_list), \
-        (f"Контакт {added_firstname}{added_lastname} "
-         f"не найден в списке контактов после его добавления")
+    contact_name = f"{added_firstname} {added_lastname}"
+
+    assert contact_name in contact_list, \
+        f"Contact {contact_name} not found after adding."

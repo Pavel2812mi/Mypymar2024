@@ -18,10 +18,7 @@ def driver():
     """
     _options = webdriver.ChromeOptions()
     _options.add_argument("windows-size=1920, 1080")
-    chrome = webdriver.Chrome()
-    chrome.implicitly_wait(5)
     chrome = webdriver.Chrome(options=_options)
-    chrome.get(URL)
     yield chrome
     chrome.quit()
 

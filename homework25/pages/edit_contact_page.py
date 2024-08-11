@@ -23,17 +23,7 @@ class EditContactPage(BasePage):
             "https://thinking-tester-contact-list.herokuapp.com/editContact")
         self.firstname_input = (By.XPATH, '//input[@id="firstName"]')
         self.lastname_input = (By.XPATH, '//input[@id="lastName"]')
-        self.birthdate_input = (By.XPATH, '//input[@id="birthdate"]')
-        self.email_input = (By.XPATH, '//input[@id="email"]')
-        self.phone_input = (By.XPATH, '//input[@id="phone"]')
-        self.street1_input = (By.XPATH, '//input[@id="street1"]')
-        self.street2_input = (By.XPATH, '//input[@id="street2"]')
-        self.city_input = (By.XPATH, '//input[@id="city"]')
-        self.stateProvince_input = (By.XPATH, '//input[@id="stateProvince"]')
-        self.postalCode_input = (By.XPATH, '//input[@id="postalCode"]')
-        self.country_input = (By.XPATH, '//input[@id="country"]')
         self.submit_button = (By.XPATH, '//button[@id="submit"]')
-        self.cancel_button = (By.XPATH, '//button[@id="cancel"]')
 
     def edit_contact(self, firstname, lastname):
         """
