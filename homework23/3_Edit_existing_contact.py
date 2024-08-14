@@ -15,7 +15,7 @@
 
 # 3) https://thinking-tester-contact-list.herokuapp.com/contactDetails
 
-# //button[@id='delete']
+# //button[@id='edit-contact']
 
 
 # 4) https://thinking-tester-contact-list.herokuapp.com/editContact
