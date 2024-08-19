@@ -58,7 +58,7 @@ def create_user():
         "email": Test_data.email,
         "age": Test_data.age,
         "phoneNumber": Test_data.phone_number,
-        "address": Test_data.address,
+        "address": Test_data.generate_user_address(10),
         "role": Test_data.role,
         "referralCode": Test_data.referralCode
     }
@@ -100,7 +100,7 @@ def update_created_user(created_user_id):
         "email": Test_data.email,
         "age": Test_data.age,
         "phoneNumber": Test_data.phone_number,
-        "address": Test_data.address,
+        "address": Test_data.generate_user_address(10),
         "role": Test_data.role,
         "referralCode": Test_data.referralCode
     }
@@ -172,8 +172,7 @@ def delete_updated_user(updated_user_id):
                                f"/functions/deleteUser/"
                                f"{updated_user_id}",
                                headers=Config.get_auth_headers(), timeout=5)
-    print(response.status_code)
-    print(response.json())
+    logger.info(response.status_code)
     logger.info("Delete updated user test successfully completed")
 
 
@@ -188,8 +187,7 @@ def delete_nonexistent_user(nonexistent_user_id):
     response = requests.delete(f"{Config.base_url}/functions/deleteUser/"
                                f"{nonexistent_user_id}",
                                headers=Config.get_auth_headers(), timeout=5)
-    print(response.status_code)
-    print(response.json())
+    logger.info(response.status_code)
     logger.info("Delete nonexistent user test successfully completed")
 
 

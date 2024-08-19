@@ -13,16 +13,11 @@ fake = Faker()
 name = fake.name()
 email = fake.email()
 age = fake.random_int(min=18, max=99)
+phone_number = '+' + fake.msisdn()
+role = random.choice(["user", "admin", "moderator"])
 
-
-def generate_user_phone_number():
-    """generates phone number in correct format"""
-    msisdn = fake.msisdn()
-    formatted_phone_number = '+' + msisdn
-    return formatted_phone_number
-
-
-phone_number = generate_user_phone_number()
+symbols = "ABCDEFGH"
+referralCode = ''.join(random.sample(symbols, len(symbols)))
 
 
 def generate_user_address(min_length=10):
@@ -31,25 +26,3 @@ def generate_user_address(min_length=10):
     while len(generated_address) < min_length:
         generated_address = f"{generated_address}, {fake.city()}"
     return generated_address
-
-
-address = generate_user_address(10)
-
-
-def generate_user_role():
-    """generates user role"""
-    roles = ["user", "admin", "moderator"]
-    return random.choice(roles)
-
-
-role = generate_user_role()
-
-
-def generate_referral_code(chars="ABCDEFGH"):
-    """generates referral code"""
-    char_list = list(chars)
-    random.shuffle(char_list)
-    return "".join(char_list)
-
-
-referralCode = generate_referral_code()

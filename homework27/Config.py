@@ -7,10 +7,10 @@ for working with authorization.
 base_url = "https://alexqa.netlify.app/.netlify"
 
 auth_token = ("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
-              "eyJ1c2VySWQiOiIxMDM4MDAyNDI0NDQx"
-              "OTEzODAwNTciLCJpYXQiOjE3MjQwMTQ3M"
-              "TYsImV4cCI6MTcyNDAxODMxNn0."
-              "a_b3kekatx2ijQR_0YM58fi3x8Q-npBfH3HcUYgeKtk")
+              "eyJ1c2VySWQiOiIxMDM4MDAyNDI0NDQxOTEzODAwNT"
+              "ciLCJpYXQiOjE3MjQwNzMwNDYsIm"
+              "V4cCI6MTcyNDA3NjY0Nn0.UbY8Q0pPBitg6x"
+              "L8UBKr1pePJTm7E12enuZHjtcawUk")
 
 
 def get_auth_headers():
