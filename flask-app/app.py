@@ -1,5 +1,8 @@
-from flask import Flask, render_template
+"""A simple Flask application that serves random cat images."""
+
+
 import random
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -13,6 +16,13 @@ images = [
 
 @app.route('/')
 def index():
+    """
+    This function renders the index.html template and passes a randomly chosen
+    cat image URL to it.
+
+    Returns:
+        Rendered index.html template with a random cat image URL.
+    """
     url = random.choice(images)
     return render_template('index.html', url=url)
 
